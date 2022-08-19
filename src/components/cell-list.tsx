@@ -1,3 +1,4 @@
+import React from 'react'
 import { useAppSelector } from '../features/hooks'
 import CellListItem from './cell-list-item'
 import AddCell from './add-cell'
@@ -12,10 +13,10 @@ const CellList: React.FC = () => {
 
     const renderedCells = cells.map((cell) => {
         return (
-            <Fragment key={cell.id}>
+            <React.Fragment key={cell.id}>
                 <CellListItem cell={cell} />
                 <AddCell previousCellId={cell.id} />
-            </Fragment>
+            </React.Fragment>
         )
     })
 

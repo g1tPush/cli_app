@@ -1,3 +1,8 @@
+# How to use
+
+With this cli you can import npm packages and run react code in it. You will see the results in the near window
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
