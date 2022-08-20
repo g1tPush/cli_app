@@ -18,12 +18,10 @@ const html = `
                     root.innerHTML = '<div style="color: red">'+ err + '</div>'
                     console.error(err)
                 }
-
                 window.addEventListener('error', (event) => {
                     event.preventDefault()
                     handleError(event.error)
                 })
-
                 try {
                     eval(event.data)
                 } catch (err) {
@@ -49,18 +47,25 @@ const Preview: React.FC<PreviewProps> = ({ code, err }) => {
         }
     }, [code])
 
+    const restart = () => {
+        iframe.current.contentWindow.postMessage(code, '*')
+    }
+
     return (
         <div className='preview-wrapper'>
-            <iframe
-                style={{ background: 'white', height: '100%' }}
-                title='review'
-                ref={iframe}
-                sandbox='allow-scripts'
-                srcDoc={html}
-            />
-            {
-                err && <div className='preview-error'>{err}</div>
-            }
+            <>
+                <iframe
+                    style={{ background: 'white', height: '100%' }}
+                    title='review'
+                    ref={iframe}
+                    sandbox='allow-scripts'
+                    srcDoc={html}
+                    onLoad={restart}
+                />
+                {
+                    err && <div className='preview-error'>{err}</div>
+                }
+            </>
         </div>
     )
 }

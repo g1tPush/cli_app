@@ -23,26 +23,6 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
     const dispatch = useAppDispatch()
     const bundle = useAppSelector((state) => state.bundler[cell.id])
 
-    // const cumalativeCode = useAppSelector((state) => {
-    //     const { data, order } = state.editor
-    //     const orderedCells = order.map((id) => {
-    //         return data[id]
-    //     })
-
-    //     const cumalativeCode = []
-
-    //     for (let c of orderedCells) {
-    //         if (c.type === 'code') {
-    //             cumalativeCode.push(c.content)
-    //         }
-    //         if (c.id === cell.id) {
-    //             break
-    //         }
-    //     }
-
-    //     return cumalativeCode
-    // })
-
     useEffect(() => {
         if (!bundle) {
             const starteBundle = createBundle(cell.id, cell.content)
@@ -59,7 +39,7 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
             clearTimeout(timer)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [cell.content, cell.id, dispatch])
+    }, [cell.content, cell.id])
 
     return (
         <Resizable direction='vertical'>
